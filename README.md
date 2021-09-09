@@ -75,6 +75,26 @@ $icons:
     font-size: $size;
   }
 }
+
+// another example for loop 
+$colors: "primary" red,"secondary" blue;
+@each $name, $colors in $colors {
+
+    &-#{$name} {
+        background-color: $colors;
+        &:focus{
+            border: $button-border-size solid lighten( $colors, 20%);
+        }
+        &:hover{
+            background-color: darken($colors, 5%);
+        }
+        &:active{
+            box-shadow: 0 0 4px 4px $colors;
+            border: 3px solid lighten( $colors, 20%);
+        }
+    }
+}
+
 ```
 
 ### Combinator Selectors
@@ -86,6 +106,18 @@ element>element   	div > p 	Selects all <p> elements where the parent is a <div>
 element+element   	div + p 	Selects the first <p> element that are placed immediately after <div> elements
 element1~element2 	p ~ ul 	  Selects every <ul> element that are preceded by a <p> element
 */
+
+// If the cube is directly inside the container:
+#container:hover > #cube { background-color: yellow; }
+
+// If cube is next to (after containers closing tag) the container:
+#container:hover + #cube { background-color: yellow; }
+
+// If the cube is somewhere inside the container:
+#container:hover #cube { background-color: yellow; }
+
+// If the cube is a sibling(all) of the container:
+#container:hover ~ #cube { background-color: yellow; }
 
 // css
 .button > span { }
